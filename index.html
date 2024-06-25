@@ -19,24 +19,22 @@
     <a-scene vr-mode-ui="enabled: false" embedded arjs='sourceType: webcam; debugUIEnabled: false;'>
 
         <a-text value="parking lot" gps-entity-place="latitude: 24.821606723437057; longitude: 121.02627622688387;"
-            position="0 320 0" rotation="0 0 0" scale="0.1 0.1 0.1" font="mozillavr" color="#e43e31" look-at="#camera"
-            side="double" align="center" width="400">
+            position="0 2 0" rotation="0 0 0" font="mozillavr" color="#e43e31" look-at="#camera" side="double"
+            align="center" scale="10 10 10">
         </a-text>
 
         <a-text value="Taipei City Dashboard"
-            gps-entity-place="latitude: 24.821524831160087; longitude: 121.02589976027265;" position="0 320 0"
-            rotation="0 0 0" scale="0.1 0.1 0.1" font="mozillavr" color="white" look-at="#camera" side="double"
-            align="center" width="400">
+            gps-entity-place="latitude: 24.821524831160087; longitude: 121.02589976027265;" position="0 2 0"
+            rotation="0 0 0" font="mozillavr" color="white" look-at="#camera" side="double" align="center"
+            scale="10 10 10">
         </a-text>
 
 
         <a-text value="milksha" gps-entity-place="latitude: 24.820801917677194; longitude: 121.02595576357018;"
-            position="0 320 0" rotation="0 0 0" scale="0.1 0.1 0.1" font="mozillavr" color="#e43e31" look-at="#camera"
-            side="double" align="center" width="200">
+            position="0 2 0" rotation="0 0 0" font="mozillavr" color="#e43e31" look-at="#camera" side="double"
+            align="center" scale="10 10 10">
         </a-text>
-        <a-camera id="camera"
-            gps-camera="simulateLatitude:  24.821406228456084; simulateLongitude: 121.0262046671148; simulateAltitude: 300"
-            rotation-reader far=900000>
+        <a-camera id="camera" gps-camera rotation-reader far=900000>
         </a-camera>
     </a-scene>
 </body>
