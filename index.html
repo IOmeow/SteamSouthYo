@@ -21,13 +21,15 @@
             height="1" width="1" look-at="[gps-camera]"></a-box>
 
         <a-cylinder gps-new-entity-place="latitude: 24.821418718629044; longitude: 121.02579424104425;" color="blue"
-            height="3" radius="1" look-at="[gps-camera]" position="0 3 0"></a-cylinder>
+            height="3" radius="1" position="0 3 0" look-at="[gps-camera]"></a-cylinder>
 
         <!-- 文字 -->
-        <a-text value="This is a fixed text." look-at="[gps-camera]" scale="2 2 2"
-            gps-new-entity-place="latitude: 24.82142159739652; longitude: 121.02621978242492;"></a-text>
+        <a-text value="This is a fixed text." scale="2 2 2" look-at="[gps-camera]"
+            gps-new-entity-place="latitude: 24.821625704592652; longitude: 121.02640444360004;" side="double"
+            align="center"></a-text>
 
-        <a-camera gps-camera rotation-reader> </a-camera>
+        <a-camera gps-camera="simulateLatitude: 24.82142159739652; simulateLongitude: 121.02621978242492;"
+            rotation-reader far="9000"> </a-camera>
     </a-scene>
 </body>
 
