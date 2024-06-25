@@ -17,15 +17,15 @@
             gltf-model="url(https://example.com/path/to/your/model.glb)" scale="5 5 5"
             look-at="[gps-camera]"></a-entity> -->
 
-        <a-box gps-entity-place="latitude: 24.821155859855374; longitude: 121.0259271377913;" color="red" depth="100"
-            height="100" width="100" look-at="[gps-camera]"></a-box>
+        <a-box gps-new-entity-place="latitude: 24.821155859855374; longitude: 121.0259271377913;" color="red" depth="1"
+            height="1" width="1" look-at="[gps-camera]"></a-box>
 
-        <a-cylinder gps-entity-place="latitude: 24.821418718629044; longitude: 121.02579424104425;" color="blue"
-            height="300" radius="100" look-at="[gps-camera]"></a-cylinder>
+        <a-cylinder gps-new-entity-place="latitude: 24.821418718629044; longitude: 121.02579424104425;" color="blue"
+            height="3" radius="1" look-at="[gps-camera]" position="0 3 0"></a-cylinder>
 
         <!-- 文字 -->
-        <a-text value="This is a fixed text." look-at="[gps-camera]" scale="200 200 200"
-            gps-entity-place="latitude: 24.82142159739652; longitude: 121.02621978242492;"></a-text>
+        <a-text value="This is a fixed text." look-at="[gps-camera]" scale="2 2 2"
+            gps-new-entity-place="latitude: 24.82142159739652; longitude: 121.02621978242492;"></a-text>
 
         <a-camera gps-camera rotation-reader> </a-camera>
     </a-scene>
