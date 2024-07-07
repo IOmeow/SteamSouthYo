@@ -77,26 +77,30 @@
 
 <script>
     async function fetchData() {
-      try {
-        const response = await fetch('http://localhost:8080/api/parking');
-        const data = await response.json();
-        console.error(data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
+        try {
+            const response = await fetch('http://localhost:8080/api/parking');
+            const data = await response.json();
+            console.error(data);
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
     }
 
     // Define getDirections function
+    var Got = false;
+    const allCoordinates = [];
     async function getDirections(lon, lat) {
         const MAPBOXTOKEN = 'pk.eyJ1IjoiaW9tZW93IiwiYSI6ImNscWF6b3lzNDFsZzQyaW56bXFwbXozMjIifQ.kOOrPuC1R2RT4Mv-nfKhCQ'; // Replace with your actual Mapbox token
         const start = '121.56068776773716,25.004236270930743';
         const end = `${lon},${lat}`;
         const url = `https://api.mapbox.com/directions/v5/mapbox/walking/${start};${end}?alternatives=true&continue_straight=true&geometries=geojson&language=en&overview=full&steps=true&access_token=${MAPBOXTOKEN}`;
-
+        if (Got) {
+            addTextElements(allCoordinates);
+            return;
+        }
         try {
             const response = await fetch(url);
             const data = await response.json();
-            const allCoordinates = [];
             data.routes[0].legs.forEach(leg => {
                 leg.steps.forEach(step => {
                     allCoordinates.push(...step.geometry.coordinates);
@@ -104,28 +108,43 @@
             });
             // Call function to add <a-text> elements
             addTextElements(allCoordinates);
+            Got = true;
         } catch (error) {
             console.error('Error fetching directions:', error);
         }
     }
 
+    var i = 0;
     // Function to add <a-text> elements to the scene
     function addTextElements(coordinates) {
         const scene = document.querySelector('a-scene');
-        coordinates.forEach((coord, index) => {
-            const text = document.createElement('a-text');
-            text.setAttribute('value', `Step ${index + 1}`);
-            text.setAttribute('gps-entity-place', `latitude: ${coord[1]}; longitude: ${coord[0]};`);
-            text.setAttribute('position', '0 0 0');
-            text.setAttribute('rotation', '0 0 0');
-            text.setAttribute('font', 'mozillavr');
-            text.setAttribute('color', 'blue');
-            text.setAttribute('look-at', '#camera');
-            text.setAttribute('side', 'double');
-            text.setAttribute('align', 'center');
-            text.setAttribute('scale', '10 10 10');
-            scene.appendChild(text);
-        });
+        // coordinates.forEach((coord, index) => {
+        //     const text = document.createElement('a-text');
+        //     text.setAttribute('value', `Step ${index + 1}`);
+        //     text.setAttribute('gps-entity-place', `latitude: ${coord[1]}; longitude: ${coord[0]};`);
+        //     text.setAttribute('position', '0 0 0');
+        //     text.setAttribute('rotation', '0 0 0');
+        //     text.setAttribute('font', 'mozillavr');
+        //     text.setAttribute('color', 'blue');
+        //     text.setAttribute('look-at', '#camera');
+        //     text.setAttribute('side', 'double');
+        //     text.setAttribute('align', 'center');
+        //     text.setAttribute('scale', '10 10 10');
+        //     scene.appendChild(text);
+        // });
+        const text = document.createElement('a-text');
+        text.setAttribute('value', `.`);
+        text.setAttribute('gps-entity-place', `latitude: ${coordinates[i][1]}; longitude: ${coordinates[i][0]};`);
+        text.setAttribute('position', '0 0 0');
+        text.setAttribute('rotation', '0 0 0');
+        text.setAttribute('font', 'mozillavr');
+        text.setAttribute('color', '#93bbfa');
+        text.setAttribute('look-at', '#camera');
+        text.setAttribute('side', 'double');
+        text.setAttribute('align', 'center');
+        text.setAttribute('scale', '100 100 100');
+        scene.appendChild(text);
+        i++;
     }
 
     // Bind getDirections function to button click
