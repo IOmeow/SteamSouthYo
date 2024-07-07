@@ -48,7 +48,7 @@
              getParkingData();
         }
              function getParkingData(){
-            fetch('http:170.20.10.2/api/parking').then(response => {
+            fetch('ws://170.20.10.2:8080/api/parking').then(response => {
                 return response.text();
             }).then(data => {
                 inputContent = data.data[0];
