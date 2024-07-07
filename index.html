@@ -43,4 +43,24 @@
         <a-camera id="camera" gps-camera="simulateLatitude: 24.821413416378828; simulateLongtitude: 121.02623662258087;" rotation-reader far=900000>
         </a-camera>
     </a-scene>
+     <script>
+        window.onload = function () {
+            getParkingData()
+        };
+        function getParkingData(){
+            fetch('https://localhost:8080/api/parking', {method: 'get'})
+                .then(function(response) {
+                    //處理 response
+                    readParkingData(response.data)
+                }).catch(function(err) {
+                    console.log("error")
+                })
+        }
+
+        function readParkingData(res_data){
+            var parkingData = res_data;
+            $('#btn').html(parkingData);
+        }
+     
+    </script>
 </body>
