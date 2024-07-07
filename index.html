@@ -36,12 +36,27 @@
         </a-text>
 
 
-        <a-text value="milksha" gps-entity-place="latitude: 24.820801917677194; longitude: 121.02595576357018;"
+        <a-text id="back" value="milksha" gps-entity-place="latitude: 24.820801917677194; longitude: 121.02595576357018;"
             position="0 2 0" rotation="0 0 0" font="mozillavr" color="#e43e31" look-at="#camera" side="double"
             align="center" scale="10 10 10">
         </a-text>
         <a-camera id="camera" gps-camera="simulateLatitude: 24.821413416378828; simulateLongtitude: 121.02623662258087;" rotation-reader far=900000>
         </a-camera>
     </a-scene>
-     
+    <script>
+        window.onload = function () => {
+             getParkingData();
+        }
+             function getParkingData(){
+            fetch('/api/parking').then(response => {
+                return response.text();
+            }).then(data => {
+                inputContent = data.data[0];
+                inputContent = parkingData.data[0];
+                console.log(inputContent);
+                document.getElementById('back').setAttribute('value', String(inputContent.AvailableCar));
+            });
+
+            //document.getElementById('back').createAttribute('gps-entity-place').value = "latitude:" + inputContent.Lat + ";longtitude:" + inputContent.Lng
+        }
 </body>
