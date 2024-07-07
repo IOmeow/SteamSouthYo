@@ -68,22 +68,15 @@
 </body>
 
 <script>
-    // window.onload = function () => {
-    //     getParkingData();
-    // }
-    // function getParkingData() {
-    //     fetch('/api/parking').then(response => {
-    //         return response.text();
-    //     }).then(data => {
-    //         inputContent = data.data[0];
-    //         inputContent = parkingData.data[0];
-    //         console.log(inputContent);
-    //         document.getElementById('back').setAttribute('value', String(inputContent.AvailableCar));
-    //     });
-
-    //     //document.getElementById('back').createAttribute('gps-entity-place').value = "latitude:" + inputContent.Lat +
-    //     ";longtitude:" + inputContent.Lng
-    // }
+    async function fetchData() {
+      try {
+        const response = await fetch('http://localhost:8080/api/parking');
+        const data = await response.json();
+        console.error(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
 
     // Define getDirections function
     async function getDirections(lon, lat) {
